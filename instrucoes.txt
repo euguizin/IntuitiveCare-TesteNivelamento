@@ -1,0 +1,3 @@
+utilizar o comando: SHOW VARIABLES LIKE 'secure_file_priv'; para descobrir o caminho da pasta onde os arquivos csv deverao ser armazenados.
+
+No meu caso foi: C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\

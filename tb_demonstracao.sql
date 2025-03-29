@@ -1,0 +1,147 @@
+CREATE teste_intuitive_care;
+USE teste_intuitive_care
+
+CREATE TABLE tb_demonstracoes_contabeis (
+    Data_Evento DATE NOT NULL,
+    REG_ANS INT NOT NULL,
+    CD_CONTA_CONTABIL INT NOT NULL,
+    DESCRICAO VARCHAR(150) NOT NULL,
+    VL_SALDO_INICIAL DECIMAL(15,2), 
+    VL_SALDO_FINAL DECIMAL(15,2)
+);
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\1T2023.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\2t2023.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\3T2023.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\4T2023.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = STR_TO_DATE(@Data_Evento, '%d/%m/%Y');
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\1T2024.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\2T2024.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;
+
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\3T2024.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;    
+ 
+ 
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\4T2024.csv'
+INTO TABLE tb_demonstracoes_contabeis
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@Data_Evento, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@VL_SALDO_INICIAL, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@VL_SALDO_FINAL, ',', '.'),
+    Data_Evento = @Data_Evento;    
+    
+
+SELECT * 
+FROM tb_demonstracoes_contabeis
+WHERE Descricao LIKE '%EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS  DE ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR %'
+  AND Data_Evento BETWEEN '2024-10-01' AND '2024-12-31';
+
+SELECT 
+	Data_Evento,
+    Descricao,  
+    VL_SALDO_INICIAL, 
+    VL_SALDO_FINAL, 
+    (VL_SALDO_INICIAL - VL_SALDO_FINAL) AS Despesa_Total
+FROM tb_demonstracoes_contabeis
+WHERE 
+    Descricao LIKE '%EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS  DE ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR %'
+    AND Data_Evento BETWEEN '2024-10-01' AND '2024-12-31'
+ORDER BY Despesa_Total DESC
+LIMIT 10;
+
+SELECT 
+    o.Razao_Social,
+    d.REG_ANS,
+    (d.VL_SALDO_INICIAL - d.VL_SALDO_FINAL) AS Total_Despesa
+FROM tb_demonstracoes_contabeis AS d
+JOIN tb_operadoras_plano_de_saude AS o ON d.REG_ANS = o.Registro_ANS
+WHERE 
+    d.Descricao LIKE '%EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS  DE ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR %'
+    AND d.Data_Evento BETWEEN '2024-10-01' AND '2024-12-31'
+ORDER BY Total_Despesa DESC
+LIMIT 10;
+
+SELECT * FROM tb_demonstracoes_contabeis;
