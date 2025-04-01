@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "bf76c833-886c-4167-80cb-3da06322c46f",
+		"name": "TesteAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43613081",
+		"_collection_link": "https://guilhermeteixeira-8123804.postman.co/workspace/Guilherme-Teixeira's-Workspace~7e31391b-d74e-4c5a-8723-b4851009268f/collection/43613081-bf76c833-886c-4167-80cb-3da06322c46f?action=share&source=collection_link&creator=43613081"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
